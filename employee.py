@@ -10,17 +10,10 @@ class Employee:
         self.contractNum = contractNum
 
     def get_pay(self):
-        if self.hours:
-            total_pay = self.hours * self.contractAmount
-        else:
-            total_pay = self.contractAmount
-        if self.commissionAmount:
-            if self.contractNum:
-                total_pay += self.contractNum * self.commissionAmount
-            else:
-                total_pay += self.commissionAmount
+        base_pay = self.hours * self.contractAmount if self.hours else self.contractAmount
+        commission_pay = self.contractNum * self.commissionAmount if self.contractNum else self.commissionAmount
         
-        return total_pay
+        return base_pay + commission_pay
 
     def __str__(self):
         result = f"{self.name} works on a "
